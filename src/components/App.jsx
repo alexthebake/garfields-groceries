@@ -1,22 +1,6 @@
 import React from 'react';
 import { fetchRecommendations } from '../api/userRecommendations';
-
-function RecommendationRow({ product }) {
-  return (
-    <div className="recommendation-row">
-      <h3>{product.name}</h3>
-      <span>{product.price}</span>
-      <div
-        style={{
-          width: 100,
-          height: 100,
-          background: `url(${product.image})`,
-          backgroundSize: 'cover'
-        }}
-      />
-    </div>
-  );
-}
+import UserRecommendations from './UserRecommendations';
 
 class App extends React.Component {
   constructor(props) {
@@ -35,6 +19,10 @@ class App extends React.Component {
   loadData() {
     this.setState({ loading: true });
     return fetchRecommendations().then(user => {
+      let emptySelection = {};
+      _.forEach(user.product_list, product => {
+        emptySelection[product.name] = 0;
+      });
       this.setState({
         user,
         loaded: true,
@@ -44,27 +32,16 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state.loaded) {
-      const { user } = this.state;
-      const fullName = `${user.first_name} ${user.last_name}`;
-      const sortedRecommendations = _.sortBy(
-        user.product_list,
-        ({ match }) => -match
-      );
-      return (
-        <div>
-          <h1>Recommendations for {fullName}</h1>
-          {_.map(sortedRecommendations, (product, i) => (
-            <RecommendationRow key={i} product={product} />
-          ))}
-          <p>Number of products: {user.product_list.length}</p>
-        </div>
-      );
-    }
-    if (this.state.loading) {
-      return <div>Loading...</div>;
-    }
-    return null;
+    return (
+      <div className="app-wrapper">
+        {this.state.loaded && (
+          <UserRecommendations
+            user={this.state.user}
+            products={this.state.user.product_list}
+          />
+        )}
+      </div>
+    );
   }
 }
 
