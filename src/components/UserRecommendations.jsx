@@ -4,16 +4,17 @@ import RecommendationRow from './RecommendationRow';
 class UserRecommendations extends React.Component {
   constructor(props) {
     super(props);
-
-    // Initialize form state
+    // Initialize form state with quantity of 0 for each product
     let emptySelection = {};
     _.forEach(props.products, product => {
       emptySelection[product.name] = 0;
     });
-
     this.state = {
       selectedProducts: emptySelection,
     };
+    // Binding is always a pain in react. Depending on which version of react
+    // and babel you are using, you can actually define your functions in a way
+    // that avoids all this binding nonsense.
     this.onQuanityChange = this.onQuanityChange.bind(this);
   }
 

@@ -19,6 +19,15 @@ function fetchRecommendationsFailure(error) {
   };
 }
 
+// I've actually written some boilerplate that makes this much simpler!
+// Actually... I've written three different versions of redux boilerplate
+//   1. https://github.com/alexthebake/redux-crud
+//      (first attempt, just for CRUD actions)
+//   2. https://github.com/alexthebake/redux-boilerplate
+//      (second attempt, more general, but got super confusing when I tried to
+//      implement nested resources)
+//   3. https://github.com/alexthebake/hotplate
+//      (third attempt, also more general, but sadly not complete)
 export function fetchRecommendations() {
   return dispatch => {
     dispatch(fetchRecommendationsLoading());

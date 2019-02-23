@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// I'm having second thoughts about this function. The idea is to provide
+// some amount of form validation (making sure that you can only have
+// positive quantity values). However, upon second look, the function is a bit
+// convoluted. To fix this, we could probably avoid redefining the event and
+// handling validation elsewhere.
 function safeOnChange(onChangeCallback) {
   return event => {
     if (event.target.value < 0) {
@@ -48,6 +53,10 @@ RecommendationRow.propTypes = {
     price: PropTypes.string,
     match: PropTypes.number,
   }),
+  // Ideally we could say that quantity can only be a number.
+  // The only reason it could possibly be a string is because this prop is
+  // coming from an input value. To fix this we could cast `quantity` to a
+  // number before passing it into this component.
   quantity: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   onQuanityChange: PropTypes.func,
 };

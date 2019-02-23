@@ -8,6 +8,9 @@ const mapStateToProps = state => {
   };
 };
 
+// This apparently is some redux magic...
+// Normally I would write something that uses `bindActionCreators` but this
+// seemed simple enough for the challenge.
 const mapDispatchToProps = { fetchRecommendations };
 
 export default connect(

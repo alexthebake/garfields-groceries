@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchRecommendations } from '../api/userRecommendations';
+import PropTypes from 'prop-types';
 import UserRecommendations from './UserRecommendations';
 
 class App extends React.Component {
@@ -19,6 +19,15 @@ class App extends React.Component {
       </div>
     );
   }
+}
+
+App.propTypes = {
+  // The usefulness of these particular propType definitions is unclear...
+  // We could define the expected shape of `userRecommendations`, or break
+  // it up in the `AppContainer` and then define the expected types.
+  // Again, for simplicity we'll go with this.
+  userRecommendations: PropTypes.object,
+  fetchRecommendations: PropTypes.func,
 }
 
 export default App;
