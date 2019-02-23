@@ -1,20 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function safeOnChange(onChangeCallback) {
-  return (event) => {
+  return event => {
     if (event.target.value < 0) {
       const newEvent = {
         ...event,
         target: {
           ...event.target,
-          value: 0
-        }
+          value: 0,
+        },
       };
       return onChangeCallback(newEvent);
     }
     return onChangeCallback(event);
-  }
+  };
 }
 
 function RecommendationRow({ product, quantity, onQuanityChange }) {
@@ -46,10 +46,10 @@ RecommendationRow.propTypes = {
     name: PropTypes.string,
     image: PropTypes.string,
     price: PropTypes.string,
-    match: PropTypes.number
+    match: PropTypes.number,
   }),
-  quantity: PropTypes.number,
-  onQuanityChange: PropTypes.func
+  quantity: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  onQuanityChange: PropTypes.func,
 };
 
 export default RecommendationRow;

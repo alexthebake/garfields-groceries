@@ -77,6 +77,10 @@ const RESPONSE = {
   ],
 };
 
-export function fetchRecommendations() {
+function fetchRecommendations() {
   return Promise.resolve(RESPONSE);
 }
+
+export default {
+  fetchRecommendations,
+};

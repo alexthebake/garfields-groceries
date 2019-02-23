@@ -3,41 +3,17 @@ import { fetchRecommendations } from '../api/userRecommendations';
 import UserRecommendations from './UserRecommendations';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loaded: false,
-      loading: false,
-      user: null,
-    };
-  }
-
   componentDidMount() {
-    this.loadData();
-  }
-
-  loadData() {
-    this.setState({ loading: true });
-    return fetchRecommendations().then(user => {
-      let emptySelection = {};
-      _.forEach(user.product_list, product => {
-        emptySelection[product.name] = 0;
-      });
-      this.setState({
-        user,
-        loaded: true,
-        loading: false,
-      });
-    });
+    this.props.fetchRecommendations();
   }
 
   render() {
     return (
       <div className="app-wrapper">
-        {this.state.loaded && (
+        {this.props.userRecommendations.loaded && (
           <UserRecommendations
-            user={this.state.user}
-            products={this.state.user.product_list}
+            user={this.props.userRecommendations.user}
+            products={this.props.userRecommendations.user.product_list}
           />
         )}
       </div>
