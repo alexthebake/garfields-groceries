@@ -1,0 +1,45 @@
+.user-recommendations {
+  display: flex;
+
+  &__recommendation-rows {
+    padding-top: 16px;
+  }
+
+  &__products {
+    flex: 1 1 auto;
+    padding: 16px;
+  }
+
+  &__cart {
+    flex: 0 0 300px;
+    padding: 16px;
+
+    &__total {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 1.5em;
+    }
+  }
+}
+
+.cart-summary {
+  &__row {
+    display: flex;
+    justify-content: space-between;
+
+    &--header {
+      font-weight: bold;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
+    }
+
+    &__product-name {
+      flex: 1 1 auto;
+    }
+
+    &__product-quantity {
+      flex: 0 0 auto;
+    }
+  }
+}

@@ -1,6 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+function safeOnChange(onChangeCallback) {
+  return (event) => {
+    if (event.target.value < 0) {
+      const newEvent = {
+        ...event,
+        target: {
+          ...event.target,
+          value: 0
+        }
+      };
+      return onChangeCallback(newEvent);
+    }
+    return onChangeCallback(event);
+  }
+}
+
 function RecommendationRow({ product, quantity, onQuanityChange }) {
   return (
     <div className="recommendation-row">
@@ -17,7 +33,7 @@ function RecommendationRow({ product, quantity, onQuanityChange }) {
           type="number"
           name={product.name}
           value={quantity}
-          onChange={onQuanityChange}
+          onChange={safeOnChange(onQuanityChange)}
           className="recommendation-row__quantity-input"
         />
       </div>

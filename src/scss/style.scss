@@ -1,61 +1,20 @@
 @import '~reset-css/reset';
-
-// Add fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
-
-$default-font: 'Nunito', serif;
-$default-border-radius: 8px;
+@import 'config/fonts';
+@import 'config/vars';
+@import 'components/**/*';
 
 body {
   font-family: $default-font;
 }
 
-.app-wrapper {
-  width: 960px;
-  margin: 0 auto;
+h1 {
+  font-size: 1.75em;
+  margin-top: .25em;
+  margin-bottom: .75em;
 }
 
-.recommendation-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px;
-
-  &:not(:last-child) {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  &__thumbnail {
-    width: 80px;
-    height: 80px;
-    background-size: cover;
-    flex: 0 0 auto;
-    border-radius: $default-border-radius;
-  }
-
-  &__details {
-    flex: 1 1 auto;
-    padding: 0 8px;
-  }
-
-  &__name {
-    font-size: 1.5em;
-    text-transform: capitalize;
-    font-weight: bold;
-  }
-
-  &__price {
-    display: inline-block;
-    font-style: italic;
-    margin-top: 4px;
-  }
-
-  &__quantity {
-    flex: 0 0 auto;
-  }
-
-  &__quantity-input {
-    padding: 8px;
-    font-size: 16px;
-    text-align: center;
-  }
+h2 {
+  font-size: 1.5em;
+  margin-top: .25em;
+  margin-bottom: .75em;
 }
